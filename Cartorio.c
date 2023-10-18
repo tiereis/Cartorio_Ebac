@@ -1,4 +1,5 @@
 
+
 #include <stdio.h> //biblioteca de comunicação com o usuário
 #include <stdlib.h> //biblioteca de alocação de espaço em memória
 #include <locale.h> //biblioteca de alocação de texto por região
@@ -10,50 +11,64 @@ int registrar(){
 	char cpf[40];
 	char nome[40];
 	char sobrenome[40];
-	char cargo[40];	
+	char cargo[40];
+	int laco = 1;
+	int opcao;
 	
-	printf("Digite o CPF a ser cadastrado ");
-	scanf("%s", cpf);
-	
-	strcpy(arquivo, cpf); // copia os valores das strings
-	
-	FILE *file; //cria o arquivo no banco de dados
-	file = fopen(arquivo, "w"); // cria o arquivo
-	fprintf(file, cpf); // salvar o valor da variavel. Seria um printf e scanf combinados?
-	fclose(file); // fechar o arquivo
-	
-	file = fopen(arquivo, "a"); //atualiza o arquivo
-	fprintf(file, ", "); //inseri uma virgula entre as variaveis armazenadas
-	fclose(file);
-	
-	printf("Digite o nome a ser cadastrado: ");
-	scanf("%s", nome);
-	
-	file = fopen(arquivo, "a");
-	fprintf(file, nome);
-	fclose(file);
-	
-	file = fopen(arquivo, "a"); 
-	fprintf(file, " "); //adiciona um espaço entre o nome e sobre nome no arquivo criado
-	fclose(file);
-	
-	printf("Digite o sobrenome a ser cadastrado: ");
-	scanf("%s", sobrenome);
-	
-	file = fopen(arquivo, "a");
-	fprintf(file, sobrenome);
-	fclose(file);
-	
-	file = fopen(arquivo, "a");
-	fprintf(file, ", "); 
-	fclose(file);
-	
-	printf("Digite o cargo a ser cadastrado: ");
-	scanf("%s", cargo);
-	
-	file = fopen(arquivo, "a");
-	fprintf(file, cargo);
-	fclose(file);
+	while(laco==1){
+		printf("Digite o CPF a ser cadastrado ");
+		scanf("%s", cpf);
+		
+		strcpy(arquivo, cpf); // copia os valores das strings
+		
+		FILE *file; //cria o arquivo no banco de dados
+		file = fopen(arquivo, "w"); // cria o arquivo
+		fprintf(file, cpf); // salvar o valor da variavel. Seria um printf e scanf combinados?
+		fclose(file); // fechar o arquivo
+		
+		file = fopen(arquivo, "a"); //atualiza o arquivo
+		fprintf(file, ", "); //inseri uma virgula entre as variaveis armazenadas
+		fclose(file);
+		
+		printf("Digite o nome a ser cadastrado: ");
+		scanf("%s", nome);
+		
+		file = fopen(arquivo, "a");
+		fprintf(file, nome);
+		fclose(file);
+		
+		file = fopen(arquivo, "a"); 
+		fprintf(file, " "); //adiciona um espaço entre o nome e sobre nome no arquivo criado
+		fclose(file);
+		
+		printf("Digite o sobrenome a ser cadastrado: ");
+		scanf("%s", sobrenome);
+		
+		file = fopen(arquivo, "a");
+		fprintf(file, sobrenome);
+		fclose(file);
+		
+		file = fopen(arquivo, "a");
+		fprintf(file, ", "); 
+		fclose(file);
+		
+		printf("Digite o cargo a ser cadastrado: ");
+		scanf("%s", cargo);
+		
+		file = fopen(arquivo, "a");
+		fprintf(file, cargo);
+		fclose(file);
+		
+		printf("\n\nDeseja incluir mais nome?\nDigite (1) para SIM (2) para NÂO.\n");
+		scanf("%d", &opcao);
+		
+		if(opcao == 2){
+			laco = 0;	
+		}
+		else{
+			laco = 1;
+		}
+	}
 	
 	system("pause");
 }
