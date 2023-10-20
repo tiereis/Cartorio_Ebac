@@ -83,18 +83,18 @@ int consultar(){
 	char cpf[40];
 	char conteudo[200];
 	
-	printf("Digite o CPF a ser consultado: ");
+	printf("Digite o CPF a ser consultado: ");//inicia a consulta pelo cpf
 	scanf("%s", cpf);
 	
 	FILE *file;
 	file = fopen(cpf, "r");
 	
-	if(file == NULL)
+	if(file == NULL)//se nao encontrado retorna ao usuaria essa informação
 	{
 		printf("Não foi possível abrir o arquivo, não localizado!\n");
 	}
 	
-	while(fgets(conteudo, 200, file) != NULL)
+	while(fgets(conteudo, 200, file) != NULL)//caso presente retorna ao usuario as suas onformações
 	{
 		printf("\nEsses são as informações do usúario: ");
 		printf("%s", conteudo);
@@ -110,23 +110,22 @@ int deletar(){
 	char conteudo[200];
 	char confirmaDel;
 	
-	printf("Digite o CPF a ser deletado: ");
+	printf("Digite o CPF a ser deletado: \n");//consulta o cpf a ser deletado
 	scanf("%s", cpf);
 	
-	//remove(cpf); //função que deleta o arquivo
 	
 	FILE *file;
 	file = fopen(cpf, "r");
 	
 	if(file == NULL){
-		printf("O usuario não se encontra no sistema.\n");
+		printf("O usuario não se encontra no sistema.\n\n");//caso nao exista no sistema, retorna uma mensagem ao usuario
 		system("pause");
 	}
 	fclose(file);
 	
 	remove(cpf);
 	
-	printf("O usuario foi deletado do sistema.\n");
+	printf("O usuario foi deletado do sistema.\n\n");//caso exista no sistema, retorna ao usuaria uma mensagem confirmando a exclusão do usuario
 		system("pause");
 	
 }
@@ -150,6 +149,8 @@ int main(){
 		for(laco=1;laco=1;)
 		{
 			setlocale(LC_ALL, "Portuguese"); //Definindo linguagem
+			
+			system("cls");
 			
 			printf("### Cartório da EBAC ###\n\n"); //Inicio do Menu
 			printf("Escolha a opção desejada do menu:\n\n");
