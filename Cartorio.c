@@ -1,5 +1,3 @@
-
-
 #include <stdio.h> //biblioteca de comunicação com o usuário
 #include <stdlib.h> //biblioteca de alocação de espaço em memória
 #include <locale.h> //biblioteca de alocação de texto por região
@@ -65,8 +63,12 @@ int registrar(){
 		if(opcao == 2){
 			laco = 0;	
 		}
-		else{
+		if(opcao == 1){
 			laco = 1;
+		}
+		else{
+			printf("Opção inválida!\n\n");
+			laco =0;
 		}
 	}
 	
@@ -108,10 +110,10 @@ int deletar(){
 	char conteudo[200];
 	char confirmaDel;
 	
-	printf("Digite o CPF a ser deletado: "); //Abaixo tentei implementar alem do pedido uma confimação antes de deletar, so que o arquivo não é deletado. Não sei se é algum erro de syntax
+	printf("Digite o CPF a ser deletado: ");
 	scanf("%s", cpf);
 	
-	remove(cpf); //função que deleta o arquivo
+	//remove(cpf); //função que deleta o arquivo
 	
 	FILE *file;
 	file = fopen(cpf, "r");
@@ -120,27 +122,13 @@ int deletar(){
 		printf("O usuario não se encontra no sistema.\n");
 		system("pause");
 	}
+	fclose(file);
 	
-	//remove(cpf); //função que deleta o arquivo
-	//printf("Usúario deletado com sucesso!\n");
-	//system("pause");
+	remove(cpf);
 	
-	//else{
-	//	while(fgets(conteudo, 200, file) != NULL){
-	//		printf("\nEsses são as informações do usúario: ");
-	//		printf("%s", conteudo);
-	//		printf("\n\n");
-	//	}
-	//	
-	//	printf("Deseja deletar esse usúario? (Y) ou (N) \n");
-	//	scanf("%s", confirmaDel);		
-	//	
-	//	if(confirmaDel == 'y' || confirmaDel == 'Y'){
-	//		remove(cpf); //função que deleta o arquivo
-	//		printf("Usúario deletado com sucesso!\n");
-	//		system("pause");
-	//	}
-//	}
+	printf("O usuario foi deletado do sistema.\n");
+		system("pause");
+	
 }
 
 int main(){
@@ -154,15 +142,13 @@ int main(){
 	printf("Login de administrador\n\nDigite a sua senha: ");
 	scanf("%s", senhadigitada);
 	
-	comparacao = strcmp(senhadigitada, "admin");
+	comparacao = strcmp(senhadigitada, "admin"); //comparação das senha recebidads para validar acesso
 	
 	if(comparacao == 0){
-	
+		
+		system("cls");
 		for(laco=1;laco=1;)
 		{
-			
-			system("cls");
-		
 			setlocale(LC_ALL, "Portuguese"); //Definindo linguagem
 			
 			printf("### Cartório da EBAC ###\n\n"); //Inicio do Menu
